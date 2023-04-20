@@ -1,0 +1,43 @@
+#include <Servo.h>
+
+#define SERVO_PIN 2
+#define bon1 12
+#define bon2 10
+#define bon3 8
+#define bon4 6
+#define bon5 4
+#define buzzer 11
+
+Servo servo;
+
+void setup() {
+  servo.attach(SERVO_PIN);
+
+  pinMode(bon1, INPUT_PULLUP);
+  pinMode(bon2, INPUT_PULLUP);
+  pinMode(bon3, INPUT_PULLUP);
+  pinMode(bon4, INPUT_PULLUP);
+  pinMode(bon5, INPUT_PULLUP);
+  pinMode(buzzer, OUTPUT);
+}
+
+void loop() {
+  if (digitalRead(bon1) == LOW) {
+    servo.write(0);
+    tone(buzzer, 1000,100);
+  } else if (digitalRead(bon2) == LOW) {
+    servo.write(45);
+    noTone(buzzer);
+  } else if (digitalRead(bon3) == LOW) {
+    servo.write(90);
+    noTone(buzzer);    
+  } else if (digitalRead(bon4) == LOW) {
+    servo.write(135);
+    noTone(buzzer);
+  } else if (digitalRead(bon5) == LOW) {
+    servo.write(180);
+    noTone(buzzer);
+  }
+  
+  delay(20);
+}
